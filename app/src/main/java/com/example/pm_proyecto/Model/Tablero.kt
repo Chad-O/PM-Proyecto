@@ -6,6 +6,13 @@ const val COLUMNAS = 3;
 // contante para empate
 const val EMPATE = "draw"
 
+//COLORES
+const val GRIS = "#808080"
+const val ROJO = "#FF5733"
+const val MORADO = "#AC33FF"
+const val CELESTE = "#3377FF"
+const val TURQUEZA = "#33FFE9"
+
 class Tablero() {
     val matriz: Array<Array<Casilla>>
     var jugador1: String = "O"
@@ -148,11 +155,16 @@ class Tablero() {
         turno = if (turno == 1) 2 else 1;
     }
 
+    /*
+    *   CAMBIAR COLOR
+    *   función que cambia de color a las casillas,
+    *   al llamarla se cambia de color.
+    */
     fun cambiarColor() {
-        if(color == "#808080") color = "#FF5733"
-        else if (color == "#FF5733") color = "#AC33FF"
-        else if (color == "#AC33FF") color = "#3377FF"
-        else color = "#808080"
+        if(color == GRIS) color = ROJO
+        else if (color == ROJO ) color = MORADO
+        else if (color == MORADO) color = CELESTE
+        else color = GRIS
     }
 
     /*
@@ -208,7 +220,7 @@ class Tablero() {
     }
     fun obtenerColor( fila : Int , col : Int) : String{
         if(matriz[fila][col].win){
-            return "#33FFE9"
+            return TURQUEZA
         }
         return matriz[fila][col].color;
     }
