@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.pm_proyecto.Model.*
 
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,24 +97,30 @@ class MainActivity : AppCompatActivity() {
                 val arrCoordenadas = cad.split("_")
                 val row = arrCoordenadas[0].toInt()
                 val col = arrCoordenadas[1].toInt()
-                //2. Insertamos dentro de la grilla
-                if(tablero.marcarCasilla(row, col)) {
+                //2. Insertamos dentro de la grill
+                if(tablero.marcarCasilla(row, col))
+                {
                     // 3. Actualizamos la pantalla
                     actualizarPantalla();
                     //4. verificamos si hay ganador
-                    tablero.resultado = tablero.verificarGanador();
-                    //Log.i("MainActivity", tablero.toStr());
-                    // 4.1 si no hay respuesta, entonces
-                    if(tablero.resultado == null){
+                    if (tablero.verificarGanador()) {
+                        //4.1 Si encontró ganador entonces, volvemos a pintar
+                        //    para que se muestre de que forma ganó.
+                        actualizarPantalla();
+                        //4.2 si no hay respuesta, entonces
+                        if(tablero.resultado == EMPATE){
+                            text.text = "Ha ocurrido un empate, porfavor pulsar cualquier botón para reiniciar."
+                        }
+                        /// 4.3 caso de empate
+                        else{
+                            text.text = "Ha ganado el jugador ${tablero.resultado!!.uppercase()}"
+                        }
+                    }
+                    // Caso donde cambia de turno
+                    else
+                    {
                         tablero.cambiarTurno();
                         text.text = "Le toca al jugador " + if(tablero.turno == 1) tablero.jugador1.uppercase() else tablero.jugador2.uppercase()
-                    }
-                    /// 4.2 caso de empate
-                    else if(tablero.resultado == EMPATE){
-                        text.text = "Ha ocurrido un empate, porfavor pulsar cualquier botón para reiniciar."
-                        // Caso donde un jugador gana
-                    }else{
-                        text.text = "Ha ganado el jugador ${tablero.resultado!!.uppercase()}"
                     }
                 }
             }
