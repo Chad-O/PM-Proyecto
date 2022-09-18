@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 // 0.1 Reiniciamos el juego
                 tablero.reiniciarTablero();
                 actualizarPantalla();
-                text.text = "Le toca al jugador " + if(tablero.turno == 1) tablero.jugador1 else tablero.jugador2
+                text.text = "Le toca al jugador " + if(tablero.turno == 1) tablero.jugador1.uppercase() else tablero.jugador2.uppercase()
             }
             else{
                 //1.Obtenemos la posición del botón
@@ -104,20 +104,40 @@ class MainActivity : AppCompatActivity() {
                     actualizarPantalla();
                     //4. verificamos si hay ganador
                     tablero.resultado = tablero.verificarGanador();
-                    Log.i("MainActivity", tablero.toStr());
+                    //Log.i("MainActivity", tablero.toStr());
                     // 4.1 si no hay respuesta, entonces
                     if(tablero.resultado == null){
                         tablero.cambiarTurno();
-                        text.text = "Le toca al jugador " + if(tablero.turno == 1) tablero.jugador1 else tablero.jugador2
+                        text.text = "Le toca al jugador " + if(tablero.turno == 1) tablero.jugador1.uppercase() else tablero.jugador2.uppercase()
                     }
                     /// 4.2 caso de empate
                     else if(tablero.resultado == EMPATE){
                         text.text = "Ha ocurrido un empate, porfavor pulsar cualquier botón para reiniciar."
                         // Caso donde un jugador gana
                     }else{
-                        text.text = "Ha ganado el jugador ${tablero.resultado}"
+                        text.text = "Ha ganado el jugador ${tablero.resultado!!.uppercase()}"
                     }
                 }
+            }
+        }
+
+       /* ------------------------------
+        *   Comportamiento de TextView
+        * ------------------------------
+        *
+        * 1. Verificar si no hay ganador
+        * 1.1 Si hay ganador o hay empate, reiniciar el juego
+        * 1.2 si no hay, no hacer nada
+        *
+        */
+
+        val textOnClickListener : (view : View ) -> Unit = { view ->
+            // 1. Verificamos
+            if(tablero.resultado != null){
+                // Si hay ganadores o empate, reiniciar
+                tablero.reiniciarTablero();
+                actualizarPantalla();
+                text.text = "Le toca al jugador " + if(tablero.turno == 1) tablero.jugador1.uppercase() else tablero.jugador2.uppercase()
             }
         }
 
@@ -134,6 +154,7 @@ class MainActivity : AppCompatActivity() {
         but2_1.setOnClickListener(butOnClickListener)
         but2_2.setOnClickListener(butOnClickListener)
 
+        text.setOnClickListener(textOnClickListener)
         // ------------------------------------------
         //  Muestra inicial de la pantalla
         // ------------------------------------------
