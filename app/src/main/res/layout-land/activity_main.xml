@@ -6,92 +6,118 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+<!--Se agregan textviews vacíos para acercar los botones más al centro-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/shadow">
+        android:background="@drawable/shadow"
+        android:weightSum="8">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="2">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
             <Button
                 android:id="@+id/but0_0"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textSize="40dp"/>
+                android:textSize="35dp"/>
             <Button
                 android:id="@+id/but0_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textSize="40dp"/>
+                android:textSize="35dp"/>
             <Button
                 android:id="@+id/but0_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textSize="40dp"/>
+                android:textSize="35dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:elevation="15dp"
             >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
             <Button
                 android:id="@+id/but1_0"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textSize="40dp"/>
+                android:textSize="35dp"/>
             <Button
                 android:id="@+id/but1_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textSize="40dp"/>
+                android:textSize="35dp"/>
             <Button
                 android:id="@+id/but1_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textSize="40dp"/>
+                android:textSize="35dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
             <Button
                 android:id="@+id/but2_0"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textSize="40dp"/>
+                android:textSize="35dp"/>
             <Button
                 android:id="@+id/but2_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textSize="40dp"/>
+                android:textSize="35dp"/>
             <Button
                 android:id="@+id/but2_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textSize="40dp"/>
+                android:textSize="35dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,6 +137,7 @@
                 android:fontFamily="@font/tourneyfont"
                 android:textSize="30dp"
                 android:text="xd">
+
             </TextView>
         </LinearLayout>
 
