@@ -6,12 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+<!--Linear inicial que recibe 5 nested linear layouts para dividirlo
+en 5 y lograr el texto en 1/5 de la pantalla-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/shadow">
+        android:background="@drawable/fondo">
+        <!--Cada uno de los linearlayouts reciben 3 botones
+        creando una grilla 3x3-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
