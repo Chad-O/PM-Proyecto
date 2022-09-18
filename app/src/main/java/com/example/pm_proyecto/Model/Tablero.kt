@@ -57,7 +57,7 @@ class Tablero() {
     fun limpiarCasillas() {
         for (i in 0 until FILAS) {
             for (j in 0 until COLUMNAS) {
-                matriz[i][j] = Casilla(null , this.color);
+                matriz[i][j] = Casilla(null , this.color , false);
             }
         }
     }
@@ -81,34 +81,51 @@ class Tablero() {
     *         "resultado". (true o false si hay ganador o no)
     *
     */
-    fun verificarGanador(): String? {
+    fun verificarGanador(): Boolean {
         //Recorrido por filas
         for (i in 0 until FILAS) {
             if (matriz[i][0].valor.equals(matriz[i][1].valor) && matriz[i][1].valor.equals(matriz[i][2].valor) && matriz[i][1].valor != null) {
-                return matriz[i][1].valor;
+                resultado = matriz[i][1].valor;
+                matriz[i][0].win = true;
+                matriz[i][1].win = true;
+                matriz[i][2].win = true;
+                return true;
             }
         }
         //Recorrido por columnas
         for (j in 0 until COLUMNAS) {
             if (matriz[0][j].valor.equals(matriz[1][j].valor) && matriz[1][j].valor.equals(matriz[2][j].valor) && matriz[1][j].valor != null) {
-                return matriz[1][j].valor;
+                resultado =  matriz[1][j].valor;
+                matriz[0][j].win = true;
+                matriz[1][j].win = true;
+                matriz[2][j].win = true;
+                return true;
             }
         }
         //Casos especiales, diagonales
         if (matriz[0][0].valor.equals(matriz[1][1].valor) && matriz[1][1].valor.equals(matriz[2][2].valor) && matriz[1][1].valor != null) {
-            return matriz[1][1].valor;
+            resultado = matriz[1][1].valor;
+            matriz[0][0].win = true;
+            matriz[1][1].win = true;
+            matriz[2][2].win = true;
+            return true;
         }
         if (matriz[0][2].valor.equals(matriz[1][1].valor) && matriz[1][1].valor.equals(matriz[2][0].valor) && matriz[1][1].valor != null) {
-            return matriz[1][1].valor;
+            resultado = matriz[1][1].valor;
+            matriz[0][2].win = true;
+            matriz[1][1].win = true;
+            matriz[2][0].win = true;
+            return true;
         }
         //Si no entra en ningún caso
         //verificamos si se ha completado la matriz
         if(estaCompleto()){
             //si esta completo y no se ha encontrado ganador, entonces es empate
-            return EMPATE;
+            resultado = EMPATE;
+            return true;
         }
         //si no esta completo, quiere decir que el juego sigue
-        return null;
+        return false;
     }
 
     //true: esta completo
@@ -190,6 +207,9 @@ class Tablero() {
         return matriz[fila][col].valor;
     }
     fun obtenerColor( fila : Int , col : Int) : String{
+        if(matriz[fila][col].win){
+            return "#33FFE9"
+        }
         return matriz[fila][col].color;
     }
 }
