@@ -42,13 +42,15 @@ class Tablero() {
     * Función para imprimir en consola el tablero
     */
 
-    fun printTablero() {
+    fun toStr() : String{
+        var str : String = "\n";
         matriz.forEach {
             it.forEach {
-                print("${it.valor}")
+                str += "${if (it.valor == null) "_" else it.valor} ";
             }
-            println()
+            str += '\n';
         }
+        return str;
     }
 
     //Funcion para limpiar casillas
@@ -76,21 +78,21 @@ class Tablero() {
     fun verificarGanador(): String? {
         //Recorrido por filas
         for (i in 0 until FILAS) {
-            if (matriz[i][0].valor == matriz[i][1].valor && matriz[i][1].valor == matriz[i][2].valor) {
-                return matriz[i][0].valor;
+            if (matriz[i][0].valor.equals(matriz[i][1].valor) && matriz[i][1].valor.equals(matriz[i][2].valor) && matriz[i][1].valor != null) {
+                return matriz[i][1].valor;
             }
         }
         //Recorrido por columnas
         for (j in 0 until COLUMNAS) {
-            if (matriz[0][j].valor == matriz[1][j].valor && matriz[1][j].valor == matriz[2][j].valor) {
-                return matriz[0][j].valor;
+            if (matriz[0][j].valor.equals(matriz[1][j].valor) && matriz[1][j].valor.equals(matriz[2][j].valor) && matriz[1][j].valor != null) {
+                return matriz[1][j].valor;
             }
         }
         //Casos especiales, diagonales
-        if (matriz[0][0].valor == matriz[1][1].valor && matriz[1][1].valor == matriz[2][2].valor) {
+        if (matriz[0][0].valor.equals(matriz[1][1].valor) && matriz[1][1].valor.equals(matriz[2][2].valor) && matriz[1][1].valor != null) {
             return matriz[1][1].valor;
         }
-        if (matriz[0][2].valor == matriz[1][1].valor && matriz[1][1].valor == matriz[2][0].valor) {
+        if (matriz[0][2].valor.equals(matriz[1][1].valor) && matriz[1][1].valor.equals(matriz[2][0].valor) && matriz[1][1].valor != null) {
             return matriz[1][1].valor;
         }
         //Si no entra en ningún caso
@@ -123,6 +125,13 @@ class Tablero() {
         turno = if (turno == 1) 2 else 1;
     }
 
+    fun cambiarColor() {
+        if(color == "#808080") color = "#FF5733"
+        else if (color == "#FF5733") color = "#AC33FF"
+        else if (color == "#AC33FF") color = "#3377FF"
+        else color = "#808080"
+    }
+
     /*
     * MARCAR CASILLA
     *   Funcion que marcara la casilla, validando si existe o no un valor
@@ -131,7 +140,7 @@ class Tablero() {
     */
     fun marcarCasilla(fila:Int , col:Int) : Boolean{
         //Validamos de que no exista ese valor
-        if(matriz[fila][col] == null){
+        if(matriz[fila][col].valor == null){
             //asignamos el valor, dependiendo del turno.
             if(turno == 1) matriz[fila][col].valor = jugador1;
             else if(turno == 2) matriz[fila][col].valor = jugador2;
@@ -140,8 +149,6 @@ class Tablero() {
         //como ya existia un valor en esa casilla, devolvemos false
         return false;
     }
-
-
     /*
     *
     * */
@@ -168,11 +175,11 @@ class Tablero() {
     */
 
     fun reiniciarTablero(){
+        cambiarColor();
         limpiarCasillas();
-        asignarLetras()
+        asignarLetras();
         resultado = null;
     }
-
     //get value
     fun obtenerValor( fila : Int , col : Int) : String?{
         return matriz[fila][col].valor;

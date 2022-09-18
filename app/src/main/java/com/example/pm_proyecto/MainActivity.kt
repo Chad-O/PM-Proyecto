@@ -4,6 +4,7 @@ package com.example.pm_proyecto
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -87,32 +88,36 @@ class MainActivity : AppCompatActivity() {
                 // 0.1 Reiniciamos el juego
                 tablero.reiniciarTablero();
                 actualizarPantalla();
-
-            }
-            //1.Obtenemos la posición del botón
-            val viewIdStr = view.resources.getResourceName(view.id)
-                .split("/")[1]
-            val cad = viewIdStr.substring(3) // ejm: 0_1
-            val arrCoordenadas = cad.split("_")
-            val row = arrCoordenadas[0].toInt()
-            val col = arrCoordenadas[1].toInt()
-            //2. Insertamos dentro de la grilla
-            if(!tablero.marcarCasilla(row, col))
-            // 3. Actualizamos la pantalla
-            actualizarPantalla();
-            //4. verificamos si hay ganador
-            tablero.resultado = tablero.verificarGanador();
-            // 4.1 si no hay respuesta, entonces
-            if(tablero.resultado == null){
-                tablero.cambiarTurno();
                 text.text = "Le toca al jugador " + if(tablero.turno == 1) tablero.jugador1 else tablero.jugador2
             }
-            /// 4.2 caso de empate
-            else if(tablero.resultado == EMPATE){
-                text.text = "Ha ocurrido un empate, porfavor pulsar cualquier botón para reiniciar."
-            // Caso donde un jugador gana
-            }else{
-                text.text = "Ha ganado el jugador ${tablero.resultado}"
+            else{
+                //1.Obtenemos la posición del botón
+                val viewIdStr = view.resources.getResourceName(view.id)
+                    .split("/")[1]
+                val cad = viewIdStr.substring(3) // ejm: 0_1
+                val arrCoordenadas = cad.split("_")
+                val row = arrCoordenadas[0].toInt()
+                val col = arrCoordenadas[1].toInt()
+                //2. Insertamos dentro de la grilla
+                if(tablero.marcarCasilla(row, col)) {
+                    // 3. Actualizamos la pantalla
+                    actualizarPantalla();
+                    //4. verificamos si hay ganador
+                    tablero.resultado = tablero.verificarGanador();
+                    Log.i("MainActivity", tablero.toStr());
+                    // 4.1 si no hay respuesta, entonces
+                    if(tablero.resultado == null){
+                        tablero.cambiarTurno();
+                        text.text = "Le toca al jugador " + if(tablero.turno == 1) tablero.jugador1 else tablero.jugador2
+                    }
+                    /// 4.2 caso de empate
+                    else if(tablero.resultado == EMPATE){
+                        text.text = "Ha ocurrido un empate, porfavor pulsar cualquier botón para reiniciar."
+                        // Caso donde un jugador gana
+                    }else{
+                        text.text = "Ha ganado el jugador ${tablero.resultado}"
+                    }
+                }
             }
         }
 
@@ -128,5 +133,10 @@ class MainActivity : AppCompatActivity() {
         but2_0.setOnClickListener(butOnClickListener)
         but2_1.setOnClickListener(butOnClickListener)
         but2_2.setOnClickListener(butOnClickListener)
+
+        // ------------------------------------------
+        //  Muestra inicial de la pantalla
+        // ------------------------------------------
+        actualizarPantalla();
     }
 }
