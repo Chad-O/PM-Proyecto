@@ -31,8 +31,6 @@ class MainActivity : AppCompatActivity() {
 
         val text = findViewById<TextView>(R.id.text)
 
-
-
         // ------------------------------------------
         //  FUNCIONES
         // ------------------------------------------
@@ -83,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         *
         * */
         val butOnClickListener : (view : View) -> Unit = {  view ->
-            //0. Verificamos que no haya un ganador
+            //0. Verificamos que no haya un ganador o un empate
             if(tablero.resultado != null){
                 // 0.1 Reiniciamos el juego
                 tablero.reiniciarTablero();
@@ -159,5 +157,6 @@ class MainActivity : AppCompatActivity() {
         //  Muestra inicial de la pantalla
         // ------------------------------------------
         actualizarPantalla();
+        text.text = "Le toca al jugador " + if(tablero.turno == 1) tablero.jugador1.uppercase() else tablero.jugador2.uppercase()
     }
 }

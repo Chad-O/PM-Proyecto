@@ -74,6 +74,12 @@ class Tablero() {
     *   3. Verifica en las 2 digonales posibles
     *   4. verifica si hay empate
     *   5. Si no encuentra ganador, devuelve nulo
+    *
+    *   TODO: cambiar logica, en vez de devolver el string?
+    *         tiene que devolver un booleano y el resultado
+    *         se va a almacenar dentro de la variable de instancia
+    *         "resultado". (true o false si hay ganador o no)
+    *
     */
     fun verificarGanador(): String? {
         //Recorrido por filas
@@ -135,7 +141,6 @@ class Tablero() {
     /*
     * MARCAR CASILLA
     *   Funcion que marcara la casilla, validando si existe o no un valor
-    *   despues de validar, cambiara de turno.
     *
     */
     fun marcarCasilla(fila:Int , col:Int) : Boolean{
