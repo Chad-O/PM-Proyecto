@@ -72,8 +72,8 @@ class Tablero() {
     /*
     * VERIFICAR GANADOR
     *   Función que verificará si existe un ganador en el juego
-    *   en caso de que encuentre un ganador, va a devolver su letra
-    *   si no encuentra ganador, devuelve nulo
+    *   en caso de que encuentre un ganador o un empate, va a devolver true
+    *   si no encuentra ganador, devuelve false
     *
     *   Procedimientos:
     *   1. Verifica por cada fila
@@ -214,6 +214,7 @@ class Tablero() {
         asignarLetras();
         resultado = null;
     }
+
     //get value
     fun obtenerValor( fila : Int , col : Int) : String?{
         return matriz[fila][col].valor;

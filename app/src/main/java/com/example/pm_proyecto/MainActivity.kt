@@ -160,6 +160,7 @@ class MainActivity : AppCompatActivity() {
         but2_2.setOnClickListener(butOnClickListener)
 
         text.setOnClickListener(textOnClickListener)
+
         // ------------------------------------------
         //  Muestra inicial de la pantalla
         // ------------------------------------------
