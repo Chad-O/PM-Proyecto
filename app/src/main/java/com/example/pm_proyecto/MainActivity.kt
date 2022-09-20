@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import com.example.pm_proyecto.Model.*
@@ -14,6 +15,9 @@ import com.example.pm_proyecto.Model.*
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Elimina action bar o titulo
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportActionBar?.hide();
         setContentView(R.layout.activity_main)
 
         val tablero = Tablero();
