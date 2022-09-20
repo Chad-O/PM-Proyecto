@@ -116,9 +116,10 @@ en 5 y lograr el texto en 1/5 de la pantalla-->
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:layout_gravity="center_vertical"
                 android:fontFamily="@font/tourneyfont"
+                android:textAlignment="center"
                 android:textSize="30dp"
                 android:text="xd">
             </TextView>
