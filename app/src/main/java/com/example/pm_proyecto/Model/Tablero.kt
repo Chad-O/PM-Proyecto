@@ -12,7 +12,7 @@ const val ROJO = "#FF5733"
 const val MORADO = "#AC33FF"
 const val CELESTE = "#3377FF"
 const val TURQUEZA = "#33FFE9"
-
+const val NARANJA = "#ff3300"
 class Tablero() {
     val matriz: Array<Array<Casilla>>
     var jugador1: String = "O"
@@ -82,10 +82,6 @@ class Tablero() {
     *   4. verifica si hay empate
     *   5. Si no encuentra ganador, devuelve nulo
     *
-    *   TODO: cambiar logica, en vez de devolver el string?
-    *         tiene que devolver un booleano y el resultado
-    *         se va a almacenar dentro de la variable de instancia
-    *         "resultado". (true o false si hay ganador o no)
     *
     */
     fun verificarGanador(): Boolean {
@@ -164,6 +160,7 @@ class Tablero() {
         if(color == GRIS) color = ROJO
         else if (color == ROJO ) color = MORADO
         else if (color == MORADO) color = CELESTE
+        else if (color == CELESTE) color = NARANJA
         else color = GRIS
     }
 
@@ -183,17 +180,22 @@ class Tablero() {
         //como ya existia un valor en esa casilla, devolvemos false
         return false;
     }
-    /*
-    *
-    * */
+
     fun asignarLetras(){
+        //declaramos una cadena con las letras que serán asignadas de forma aleateoria
         val abc : String = "abcdefghijklmnopqrstuvwxyz"
+        //Almacenamos el indice de la cadena en rand1 y rand2
         var rand1 : Int = (abc.indices).random();
         var rand2 : Int = (abc.indices).random();
+        //en caso los valores rand1 y rand2 sean iguales
         while(rand1 == rand2){
+            //se modificar el valor de ellos hasta que sean diferentes
             rand1 = (abc.indices).random();
             rand2 = (abc.indices).random();
         }
+
+        //una vez corroborado que los valores de rand1 y rand2 son diferentes, asignamos
+        //una letra para cada jugador
         jugador1 = abc[rand1].toString();
         jugador2 = abc[rand2].toString();
     }
@@ -220,6 +222,8 @@ class Tablero() {
         return matriz[fila][col].valor;
     }
     fun obtenerColor( fila : Int , col : Int) : String{
+        //si se encuentra un ganador devolvemos color turqueza para que las
+        //casillas tomen ese color
         if(matriz[fila][col].win){
             return TURQUEZA
         }
